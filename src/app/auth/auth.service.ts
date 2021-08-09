@@ -11,4 +11,8 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {
     this.clientPrincipal$ = this.httpClient.get('/.auth/me');
   }
+
+  getHelloMessage(name: string) {
+    return this.httpClient.get(`/api/HelloWorld?name=${name}`);
+  }
 }
