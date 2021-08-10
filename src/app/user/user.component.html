@@ -10,10 +10,25 @@
 <a href="/.auth/login/aad">Login with AAD</a>
 
 <br>
+
+<h2>User details from API</h2>
+
+<div *ngIf="(helloMessage$ | async)?.userDetails as user">
+  <h3>user name: {{ user.userDetails }} </h3>
+  <div>
+    {{ user | json }}
+  </div>
+</div>
+
 <!-- <iframe src="/.auth/me"></iframe> -->
 
-<div>
-  <!-- {{ clientPrincipal$ | async | json }} -->
+<h2>User details from .auth/me</h2>
+
+<div *ngIf="clientPrincipal$ | async as user">
+  <h3>user name: {{ user.clientPrincipal.userDetails }} </h3>
+  <div>
+    {{ user | json }}
+  </div>
 </div>
 
 <a href="/.auth/logout">Log out</a>
