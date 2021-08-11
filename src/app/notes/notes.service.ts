@@ -27,6 +27,10 @@ export class NotesService {
   }
 
   addNote(content: string) {
+    this.httpClient.post<Note>('/api/SaveNote', {content})
+    .subscribe((note) => {
+      this.notes$.next([note]);
+    })
     mockNotes.push({ content });
     this.notes$.next(mockNotes);
   }
