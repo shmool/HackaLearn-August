@@ -8,7 +8,7 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  // clientPrincipal$ = this.authService.clientPrincipal$;
+  clientPrincipal$ = this.authService.clientPrincipal$;
   helloMessage$!: Observable<any>;
 
   constructor(private authService: AuthService) { }
