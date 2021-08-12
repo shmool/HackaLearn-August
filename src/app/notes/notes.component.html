@@ -6,5 +6,8 @@
 <h2>Your Notes</h2>
 
 <ul>
-  <li *ngFor="let note of notes$ | async">{{ note.content }}</li>
+  <li *ngFor="let note of notes$ | async" (click)="switchUpdate(note)">
+    <span *ngIf="!note.update">{{ note.content }}</span>
+    <input *ngIf="note.update" [value]="note.content" (keyup.enter)="updateNote(note, noteUpdateInput.value)" #noteUpdateInput>
+    </li>
 </ul>

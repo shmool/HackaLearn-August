@@ -1,4 +1,4 @@
-import { NotesService } from './notes.service';
+import { NotesService, Note } from './notes.service';
 import { Component, OnInit } from '@angular/core';
 import { map, tap } from 'rxjs/operators'
 import { AuthService } from '../auth/auth.service';
@@ -24,6 +24,17 @@ export class NotesComponent implements OnInit {
 
   saveNote(note: string) {
     this.notesService.addNote(note);
+  }
+
+  switchUpdate(note: Note) {
+    if (!note.update) {
+      note.update = true;
+    }
+  }
+
+  updateNote(note: Note, content: string) {
+    this.notesService.updateNote({...note, content });
+    note.update = false;
   }
 
 }

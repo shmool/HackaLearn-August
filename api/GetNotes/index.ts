@@ -12,7 +12,10 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const database = client.database(databaseId);
   const container = database.container(containerName);
 
-  const notes = await container.items.readAll().fetchAll();
+  const query = `SELECT * FROM c WHERE c.groupId = "123456"`;
+  const notes = await container.items.query(query).fetchAll();
+
+  // const notes = await container.items.readAll().fetchAll();
 
     context.res = {
         // status: 200, /* Defaults to 200 */
