@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface Note {
+export interface Note {
   content: string;
+  id?: string;
+  update: boolean;
 }
 
 const mockNotes = [
-  { content: 'Hello'},
-  { content: 'World'}
+  { content: 'Hello', update: false},
+  { content: 'World',  update: false}
 ];
 
 @Injectable({
@@ -31,7 +33,14 @@ export class NotesService {
     .subscribe((note) => {
       this.notes$.next([note]);
     })
-    mockNotes.push({ content });
+    mockNotes.push({ content, update: false });
     this.notes$.next(mockNotes);
+  }
+
+  updateNote(note: Note) {
+    this.httpClient.post<Note>('/api/UpdateNote', {note})
+    .subscribe((savedNote) => {
+      this.notes$.next([savedNote]);
+    })
   }
 }
