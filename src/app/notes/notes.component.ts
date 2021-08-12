@@ -1,0 +1,29 @@
+import { NotesService } from './notes.service';
+import { Component, OnInit } from '@angular/core';
+import { map, tap } from 'rxjs/operators'
+import { AuthService } from '../auth/auth.service';
+
+@Component({
+  selector: 'app-notes',
+  templateUrl: './notes.component.html',
+  styleUrls: ['./notes.component.scss']
+})
+export class NotesComponent implements OnInit {
+  username$ = this.authService.clientPrincipal$.pipe(
+    tap(console.log),
+    map(user => user.clientPrincipal.userDetails)
+  );
+
+  notes$ = this.notesService.notes$;
+
+  constructor(private authService: AuthService, private notesService: NotesService) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  saveNote(note: string) {
+    this.notesService.addNote(note);
+  }
+
+}

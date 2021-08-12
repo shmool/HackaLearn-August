@@ -1,0 +1,10 @@
+<h1>Hello {{ username$ | async }}</h1>
+
+<h2>New Note</h2>
+<input (keyup.enter)="saveNote(noteInput.value)" #noteInput>
+
+<h2>Your Notes</h2>
+
+<ul>
+  <li *ngFor="let note of notes$ | async">{{ note.content }}</li>
+</ul>
