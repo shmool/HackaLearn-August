@@ -11,7 +11,7 @@ import { AuthService } from '../auth/auth.service';
 export class NotesComponent implements OnInit {
   username$ = this.authService.clientPrincipal$.pipe(
     tap(console.log),
-    map(user => user.clientPrincipal.userDetails)
+    map(user => user && user.clientPrincipal ? user.clientPrincipal.userDetails : 'anonymous')
   );
 
   notes$ = this.notesService.notes$;
