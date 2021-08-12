@@ -8,9 +8,9 @@ import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: '', component: UserComponent },
-  { path: 'notes', component: NotesComponent },
+  { path: 'notes', component: NotesComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

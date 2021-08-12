@@ -3,6 +3,10 @@
     {
       "route": "/notes",
       "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/admin",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "navigationFallback": {
